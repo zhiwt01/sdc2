@@ -5,9 +5,9 @@ const Query = {
     const productId = Number(req.query.product_id) || 1;
     const page = Number(req.query.page) || 1;
     const count = Number(req.query.count) || 5;
-    if (req.query?.question_id) {
+    if (req.query.question_id) {
       const params = [req.query.question_id, page, count, page * count];
-      console.log(params);
+      // console.log(params);
       database.query(
         `select  json_agg(
         json_build_object(
@@ -64,9 +64,9 @@ const Query = {
           if (err) {
             console.log(err);
           }
-          if (serResp?.rows[0]?.output) {
+          if (serResp.rows[0]?.output) {
             // let { rows } = serResp;
-            console.log(serResp);
+            // console.log(serResp);
             res.send(serResp.rows[0].output);
           } else {
             res.send('no product found');
@@ -82,8 +82,8 @@ const Query = {
     if (req.query.product_id) {
       const id = req.query.product_id;
       const params = [id, body, name, email];
-      console.log('params2 ', params);
-      console.log(req.query);
+      // console.log('params2 ', params);
+      // console.log(req.query);
       database.query(
         `INSERT INTO questions (product_id, question_body, date_written, asker_name , asker_email, reported, helpful)
         VALUES ($1 :: int, $2 :: VARCHAR, current_timestamp, $3 :: VARCHAR, $4 :: VARCHAR, 'false', 0);`,
@@ -124,8 +124,8 @@ const Query = {
     if (req.query.product_id) {
       const id = req.query.product_id;
       const params = [id, body, name, email];
-      console.log('params2 ', params);
-      console.log(req.query);
+      // console.log('params2 ', params);
+      // console.log(req.query);
       database.query(
         `INSERT INTO questions (product_id, question_body, date_written, asker_name , asker_email, reported, helpful)
         VALUES ($1 :: int, $2 :: VARCHAR, current_timestamp, $3 :: VARCHAR, $4 :: VARCHAR, 'false', 0);`,
